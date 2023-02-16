@@ -15,8 +15,15 @@ the following sequence:
 0, 1, -1, 2, -2, 3, -3, 4, -4, ...
 *)
 (*
-fun
-find_root(f0: int -> int): int = ...
+fun find_root (f0: int -> int): int =
+  let
+    exception ZERO of int
+    fun loop(i: int): int =
+      if f0(i) = 0 then i
+      else loop(i+1)
+  in
+    (loop 0) handle ZERO i => i
+  end;
 *)
 
 (* ****** ****** *)
